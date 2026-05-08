@@ -412,14 +412,13 @@ export const stack = {
 export const background = {
   education: [
     {
-      institution: "IIT Madras",
-      degree: "BSc - AI & Data Science",
+      degree: "CSE - specialization in AI and DS, 2023-2027",
       status: "ongoing",
     },
     {
-      institution: "IIIT Kottayam",
-      degree: "Computer Science",
-      status: "ongoing",
+      institution: "IIT Madras BS",
+      degree: "AI & Data Science foundation",
+      status: "completed",
     },
   ],
   organizations: [
