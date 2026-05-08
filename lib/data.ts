@@ -412,6 +412,7 @@ export const stack = {
 export const background = {
   education: [
     {
+      institution: "IIIT Kottayam",
       degree: "CSE - specialization in AI and DS, 2023-2027",
       status: "ongoing",
     },
