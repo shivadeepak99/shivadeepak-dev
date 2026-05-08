@@ -23,7 +23,7 @@ const config: Config = {
         mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
       },
       letterSpacing: {
-        tightest: "-0.04em",
+        tightest: "0em",
       },
       animation: {
         "fade-up": "fadeUp 0.6s ease-out forwards",

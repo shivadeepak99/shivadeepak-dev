@@ -20,7 +20,7 @@ export function Contact() {
             Let&apos;s build something.
           </h2>
           <p className="mt-4 text-muted max-w-md mx-auto">
-            I&apos;m open to AI engineering roles, research collaborations, and interesting technical problems. Response usually within 24h.
+            I&apos;m open to AI engineering roles, backend engineering roles, research collaborations, and serious technical problems.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">

@@ -21,6 +21,9 @@ export function Nav() {
           <a href="#thinking" className="hover:text-foreground transition-colors">
             Thinking
           </a>
+          <a href="#notes" className="hidden sm:inline hover:text-foreground transition-colors">
+            Notes
+          </a>
           <Link href="/uses" className="hover:text-foreground transition-colors">
             /uses
           </Link>

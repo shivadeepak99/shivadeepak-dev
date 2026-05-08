@@ -43,6 +43,15 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mt-4 font-mono text-xs uppercase tracking-widest text-muted"
+        >
+          {hero.role}
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
           className="mt-6 max-w-2xl text-lg sm:text-xl text-muted leading-relaxed"
         >
