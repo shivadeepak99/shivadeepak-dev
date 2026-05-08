@@ -12,7 +12,7 @@ export default function Home() {
     <>
       <Hero />
       <Building />
-      <Projects />
+      <Projects compact />
       <Philosophy />
       <EngineeringNotes />
       <Stack />

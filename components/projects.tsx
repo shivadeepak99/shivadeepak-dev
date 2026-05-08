@@ -1,8 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Lock } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Lock } from "lucide-react";
 import { projectCategories, type Project, type ProjectStatus } from "@/lib/data";
 
 const statusMeta: Record<ProjectStatus, { label: string; className: string }> = {
@@ -132,7 +133,70 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   );
 }
 
-export function Projects() {
+function ProjectPreviewCard({ project, index }: { project: Project; index: number }) {
+  const status = statusMeta[project.status];
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.4, delay: index * 0.04 }}
+      className="card-base card-hover p-5"
+    >
+      <div className="flex items-center gap-2 flex-wrap">
+        <h3 className="font-semibold tracking-tight text-foreground">{project.name}</h3>
+        <span className={`font-mono text-[10px] uppercase tracking-widest ${status.className}`}>
+          ● {status.label}
+        </span>
+      </div>
+      <p className="mt-2 text-sm text-muted leading-relaxed">{project.oneLiner}</p>
+      <div className="mt-4 flex flex-wrap gap-1.5">
+        {project.stack.slice(0, 5).map((s) => (
+          <span key={s} className="tag">
+            {s}
+          </span>
+        ))}
+      </div>
+    </motion.article>
+  );
+}
+
+export function Projects({ compact = false }: { compact?: boolean }) {
+  if (compact) {
+    const previewProjects = projectCategories
+      .flatMap((category) => category.projects)
+      .filter((project) => ["Agentic-RAG", "Deus Ex Machina", "PromptLens"].includes(project.name));
+
+    return (
+      <section id="work" className="py-20 border-t border-border/40">
+        <div className="container-wide">
+          <div className="section-label">Selected Work</div>
+          <h2 className="section-heading">Systems worth opening separately.</h2>
+          <p className="mt-3 text-muted max-w-2xl">
+            A short preview of the work. The full project page goes deeper into architecture, tradeoffs, and implementation notes without making the landing page a long scroll.
+          </p>
+
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-4">
+            {previewProjects.map((project, index) => (
+              <ProjectPreviewCard key={project.name} project={project} index={index} />
+            ))}
+          </div>
+
+          <div className="mt-8">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 rounded-lg bg-foreground px-5 py-2.5 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
+            >
+              View all projects
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="work" className="py-20 border-t border-border/40">
       <div className="container-wide">

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, Github, FileText, Linkedin } from "lucide-react";
+import { ArrowRight, Mail, Github, Instagram, Linkedin } from "lucide-react";
 import { siteMeta } from "@/lib/data";
 
 export function Contact() {
@@ -54,13 +54,13 @@ export function Contact() {
               LinkedIn
             </a>
             <a
-              href={siteMeta.orcid}
+              href={siteMeta.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"
             >
-              <FileText className="w-4 h-4" />
-              ORCID
+              <Instagram className="w-4 h-4" />
+              Instagram
             </a>
           </div>
         </motion.div>

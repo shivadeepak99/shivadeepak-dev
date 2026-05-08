@@ -18,7 +18,6 @@ export function Hero() {
           transition={{ duration: 0.5 }}
           className="flex items-center gap-4 mb-6"
         >
-          {/* Avatar — drop public/avatar.png to enable. Falls back to initials block on error. */}
           <Avatar />
           <div className="flex items-center gap-2">
             <span className="relative flex h-2 w-2">
@@ -113,22 +112,15 @@ export function Hero() {
 }
 
 function Avatar() {
-  // If public/avatar.png exists it loads. If not, the onError fallback hides the
-  // <img> and the gradient ring + initial below shows through.
   return (
-    <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-accent to-accent-soft p-[2px] flex-shrink-0">
-      <div className="w-full h-full rounded-full bg-card overflow-hidden flex items-center justify-center">
+    <div
+      aria-label={siteMeta.name}
+      className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-accent-soft p-[2px] flex-shrink-0"
+    >
+      <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
         <span className="font-mono text-sm font-semibold text-foreground/90 select-none">
           SD
         </span>
-        <img
-          src={siteMeta.avatar}
-          alt={siteMeta.name}
-          className="absolute inset-[2px] w-[calc(100%-4px)] h-[calc(100%-4px)] rounded-full object-cover"
-          onError={(e) => {
-            (e.currentTarget as HTMLImageElement).style.display = "none";
-          }}
-        />
       </div>
     </div>
   );

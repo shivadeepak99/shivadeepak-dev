@@ -9,7 +9,7 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 22,
+          fontSize: 16,
           background: "#0a0a0a",
           width: "100%",
           height: "100%",
@@ -19,10 +19,10 @@ export default function Icon() {
           color: "#a78bfa",
           fontWeight: 700,
           fontFamily: "system-ui, sans-serif",
-          letterSpacing: "-0.05em",
+          letterSpacing: "0",
         }}
       >
-        S
+        SD
       </div>
     ),
     { ...size }

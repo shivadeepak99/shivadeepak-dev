@@ -23,12 +23,12 @@ export function Footer() {
             Email
           </a>
           <a
-            href={siteMeta.orcid}
+            href={siteMeta.instagram}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-foreground transition-colors"
           >
-            ORCID
+            Instagram
           </a>
           <span className="text-muted/60">·</span>
           <span className="text-muted/60">{siteMeta.location}</span>

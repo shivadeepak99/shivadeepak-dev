@@ -7,10 +7,10 @@ export const siteMeta = {
   description:
     "AI systems and backend engineering portfolio focused on orchestration, retrieval, memory systems, telemetry, and long-running automation workflows.",
   url: "https://shivadeepak.dev",
-  email: "shivadeepak.dev@gmail.com",
+  email: "hello@shivadeepak.dev",
   github: "https://github.com/shivadeepak99",
   linkedin: "https://www.linkedin.com/in/shivadeepak-shanigaram-77b475314/",
-  orcid: "https://orcid.org/0009-0008-5214-1303",
+  instagram: "https://www.instagram.com/shivadeepakshanigaram/",
   location: "India · UTC +05:30",
   avatar: "/avatar.png",
 };
@@ -337,29 +337,6 @@ export const projectCategories: ProjectCategory[] = [
     ],
   },
   {
-    eyebrow: "Experimental / Research",
-    title: "Small research systems and technical curiosity.",
-    description:
-      "Experiments that explore non-standard infrastructure, randomness, and applied research ideas.",
-    projects: [
-      {
-        name: "Quantum Image Shield",
-        href: "https://github.com/shivadeepak99/quantum-image-shield",
-        oneLiner: "Hybrid quantum-classical image encryption experiment.",
-        description:
-          "A quantum-classical image encryption system using Qiskit-generated randomness, pixel permutation, and statistical cryptographic analysis.",
-        stack: ["Python", "Qiskit", "Streamlit", "NumPy", "PIL", "Cryptographic analysis"],
-        highlights: [
-          "Hadamard gates and measurements generate the random keystream and permutation seed.",
-          "XOR operations and pixel permutation form the classical encryption path.",
-          "Entropy, histogram uniformity, correlation, and PSNR are used to analyze results.",
-        ],
-        diagram: ["Image", "Quantum randomness", "XOR", "Permutation", "Analysis"],
-        status: "experimental",
-      },
-    ],
-  },
-  {
     eyebrow: "Foundations",
     title: "Earlier full-stack systems work.",
     description:
@@ -430,7 +407,6 @@ export const stack = {
   Automation: ["Playwright", "FFmpeg", "CLI Tools", "Daemon Systems", "Discord Workflows"],
   Frontend: ["TypeScript", "Next.js", "React", "Electron", "Tailwind CSS"],
   Observability: ["Structured Logs", "Telemetry Pipelines", "Activity Logs", "Evaluation Harnesses"],
-  Research: ["IBM Qiskit", "Cryptographic Analysis"],
 };
 
 export const background = {
@@ -450,10 +426,6 @@ export const background = {
     { name: "PromptForgeAI", role: "Building", url: "https://promptforgeai.tech" },
     { name: "QiText-Engine", role: "Member" },
   ],
-  research: {
-    orcid: "0009-0008-5214-1303",
-    note: "ORCID-registered researcher with an interest in AI systems and applied research workflows",
-  },
 };
 
 export const uses = {

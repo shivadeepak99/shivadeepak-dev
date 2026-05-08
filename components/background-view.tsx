@@ -1,20 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Building2, BarChart3, FileText } from "lucide-react";
+import { GraduationCap, Building2, BarChart3 } from "lucide-react";
 import { background } from "@/lib/data";
 import type { GitHubStats } from "@/lib/github";
 
 const fmt = (n: number) => n.toLocaleString("en-US");
+const streakStatsUrl =
+  "https://github-readme-streak-stats.herokuapp.com/?user=shivadeepak99&theme=tokyonight&hide_border=false";
 
 export function BackgroundView({ stats }: { stats: GitHubStats }) {
-  const statCards = [
-    { label: "Contributions / 12 mo", value: fmt(stats.totalContributions) },
-    { label: "Longest streak", value: `${fmt(stats.longestStreak)} days` },
-    { label: "Current streak", value: stats.currentStreak > 0 ? `${fmt(stats.currentStreak)} days` : "—" },
-    { label: "Public repos", value: fmt(stats.publicRepos) },
-  ];
-
   return (
     <section id="background" className="py-20 border-t border-border/40">
       <div className="container-wide">
@@ -98,7 +93,7 @@ export function BackgroundView({ stats }: { stats: GitHubStats }) {
               <div className="flex items-center gap-2">
                 <BarChart3 className="w-4 h-4 text-accent" />
                 <span className="font-mono text-xs uppercase tracking-widest text-muted">
-                  GitHub by the numbers
+                  GitHub activity
                 </span>
               </div>
               {stats.source === "live" && (
@@ -108,45 +103,29 @@ export function BackgroundView({ stats }: { stats: GitHubStats }) {
                 </span>
               )}
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {statCards.map((s) => (
-                <div key={s.label}>
-                  <div className="text-2xl font-semibold tracking-tight text-foreground tabular-nums">
-                    {s.value}
-                  </div>
-                  <div className="mt-1 font-mono text-xs uppercase tracking-widest text-muted">
-                    {s.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
 
-          {/* Research */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="card-base p-6 lg:col-span-2"
-          >
-            <div className="flex items-center gap-2 mb-3">
-              <FileText className="w-4 h-4 text-accent" />
-              <span className="font-mono text-xs uppercase tracking-widest text-muted">
-                Research
-              </span>
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_180px] gap-5 items-center">
+              <div className="overflow-hidden rounded-lg border border-border/50 bg-subtle/20">
+                <img
+                  src={streakStatsUrl}
+                  alt="Live GitHub streak stats for shivadeepak99"
+                  className="block w-full"
+                  loading="lazy"
+                />
+              </div>
+
+              <div className="rounded-lg border border-border/50 bg-subtle/20 p-4">
+                <div className="text-2xl font-semibold tracking-tight text-foreground tabular-nums">
+                  {stats.publicRepos === null ? "Live" : fmt(stats.publicRepos)}
+                </div>
+                <div className="mt-1 font-mono text-xs uppercase tracking-widest text-muted">
+                  {stats.publicRepos === null ? "Fetched from GitHub" : "Public repos"}
+                </div>
+                <p className="mt-3 text-xs leading-relaxed text-muted">
+                  Streak and contribution details render from the live GitHub streak endpoint.
+                </p>
+              </div>
             </div>
-            <p className="text-sm text-muted">
-              {background.research.note} ·{" "}
-              <a
-                href={`https://orcid.org/${background.research.orcid}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="link font-mono"
-              >
-                ORCID {background.research.orcid}
-              </a>
-            </p>
           </motion.div>
         </div>
       </div>

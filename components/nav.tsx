@@ -15,15 +15,15 @@ export function Nav() {
         </Link>
 
         <nav className="flex items-center gap-6 text-sm text-muted">
-          <a href="#work" className="hover:text-foreground transition-colors">
-            Work
-          </a>
-          <a href="#thinking" className="hover:text-foreground transition-colors">
+          <Link href="/projects" className="hover:text-foreground transition-colors">
+            Projects
+          </Link>
+          <Link href="/#thinking" className="hover:text-foreground transition-colors">
             Thinking
-          </a>
-          <a href="#notes" className="hidden sm:inline hover:text-foreground transition-colors">
+          </Link>
+          <Link href="/#notes" className="hidden sm:inline hover:text-foreground transition-colors">
             Notes
-          </a>
+          </Link>
           <Link href="/uses" className="hover:text-foreground transition-colors">
             /uses
           </Link>
