@@ -1,79 +1,48 @@
 # shivadeepak.dev
 
-Personal portfolio for Shiva Deepak — Founder of PromptForge AI, AI Engineer.
-
-Built with Next.js 14 (App Router), TypeScript, Tailwind CSS, Framer Motion, and Geist font.
-
-## Quick start
+Personal site. Next.js 16 (App Router), React 19, TypeScript, hand-written CSS. No UI libraries.
 
 ```bash
 npm install
-npm run dev
+npm run dev        # http://localhost:3000
+npm run build && npm start
+npm run lint && npm run typecheck
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+## Where things live
 
-## Editing content
+| To change | Edit |
+|---|---|
+| Name, email, links, the identity line, the portrait | `content/site.ts` |
+| Case files (`/work`) | `content/work.ts` |
+| Notes (`/notes`) | `content/notes.ts` |
+| The hero's decision-trace scenarios | `content/trace.ts` |
+| Colors, type scale, spacing, motion | `:root` in `app/globals.css` |
 
-All copy lives in **`lib/data.ts`** — that's the only file you usually need to touch.
+Pages are static. Content is plain TypeScript, so a typo in a field fails the build.
 
-- `siteMeta` — your name, email, social links
-- `hero` — landing greeting + tagline + status pills
-- `building` — PromptForge AI showcase block
-- `projects` — list of project cards (public + private)
-- `philosophy` — the "how I think" section
-- `stack` — categorized tech stack
-- `background` — education, orgs, GitHub stats
-- `uses` — the `/uses` page content
+**Email is hidden for now** (`email: null` in `content/site.ts`). Every contact point falls back to LinkedIn. Set it to the address once the mailbox exists and the whole site switches to `mailto:`.
 
-Components consume this data — no hard-coded copy in JSX.
 
-## Project structure
+## The portrait
 
+Drop the animated portrait into `/public` and set it in `content/site.ts`:
+
+```ts
+portrait: { src: "/portrait.mp4", poster: "/portrait.jpg", alt: "Shiva Deepak" },
 ```
-app/
-  layout.tsx         # Root layout, metadata, fonts
-  page.tsx           # Main portfolio (single-page)
-  globals.css        # Tailwind + custom utilities
-  uses/page.tsx      # /uses page
-  opengraph-image.tsx# Auto-generated OG image
-  icon.tsx           # Auto-generated favicon
 
-components/
-  nav.tsx
-  hero.tsx
-  building.tsx       # PromptForge showcase
-  projects.tsx
-  philosophy.tsx
-  stack.tsx
-  background.tsx
-  contact.tsx
-  footer.tsx
+Until then the arch shows the turning sigil. Keep the video under ~1.5 MB, muted, looping, and 3:4.3.
 
-lib/
-  data.ts            # ALL CONTENT
-  utils.ts
-```
+## Design rules
+
+- **Ember** marks a decision (a refusal, a question). **Verdigris** marks something verified. Nothing else uses color.
+- Motion is CSS only, and everything is visible without JavaScript. `prefers-reduced-motion` turns it all off.
+- One motion signature: the hero trace. Everything else is still.
+- Production case files are anonymized: no company or customer names, no internal metrics. Add numbers only after the employer approves.
 
 ## Deploy
 
-```bash
-npm i -g vercel
-vercel
-```
+Vercel. Set `NEXT_PUBLIC_SITE_URL` to whichever host is primary (apex or `www`), and make the other redirect to it, so the canonical URL, sitemap and social card all agree.
 
-Then point `shivadeepak.dev` at Vercel via your DNS provider:
-
-| Type  | Name | Value                |
-|-------|------|----------------------|
-| A     | @    | 76.76.21.21          |
-| CNAME | www  | cname.vercel-dns.com |
-
-## TODO before going live
-
-Search the codebase for `TODO:` and fill in:
-
-- LinkedIn URL (`lib/data.ts` → `siteMeta.linkedin`)
-- Twitter handle if any (`lib/data.ts` → `siteMeta.twitter`, `app/layout.tsx`)
-- Hardware in `/uses` page
-- Confirm terminal preference in `/uses`
+CI (`.github/workflows/ci.yml`) runs lint, typecheck, build and `npm audit --audit-level=high`.
