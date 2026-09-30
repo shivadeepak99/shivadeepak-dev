@@ -371,8 +371,8 @@ a:hover {
 }
 .brand {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.6rem;
+  align-items: center;
+  gap: 0.7rem;
   text-decoration: none;
   font-family: var(--f-display);
   font-size: 1.35rem;
