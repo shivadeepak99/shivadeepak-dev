@@ -55,3 +55,4 @@ Thumbs.db
 # Package managers
 pnpm-lock.yaml.backup
 package-lock.json.bak
+.claude/

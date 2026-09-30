@@ -1,48 +1,49 @@
 import type { Metadata } from "next";
-import { uses } from "@/lib/data";
+import Link from "next/link";
+import { uses } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "/uses",
-  description: "Tools, hardware, and setup I actually use day-to-day.",
+  title: "Uses",
+  description: "The tools I actually reach for.",
+  alternates: { canonical: "/uses" },
 };
 
 export default function UsesPage() {
   return (
-    <section className="py-20">
-      <div className="container-tight">
-        <div className="section-label">/uses</div>
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tightest text-foreground">
-          What I use.
-        </h1>
-        <p className="mt-4 text-muted leading-relaxed max-w-2xl">{uses.intro}</p>
-
-        <div className="mt-12 space-y-10">
-          {uses.sections.map((section) => (
-            <div key={section.title}>
-              <h2 className="font-mono text-xs uppercase tracking-widest text-muted mb-4">
-                {section.title}
-              </h2>
-              <ul className="space-y-px bg-border/40 rounded-xl overflow-hidden border border-border/40">
-                {section.items.map((item) => (
-                  <li
-                    key={item.name}
-                    className="bg-card p-4 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4"
-                  >
-                    <span className="font-medium text-foreground sm:w-48 flex-shrink-0">
-                      {item.name}
-                    </span>
-                    <span className="text-sm text-muted">{item.note}</span>
-                  </li>
+    <>
+      <section className="page-head">
+        <div className="wrap">
+          <Link className="back" href="/">
+            ← Home
+          </Link>
+          <h1 className="display rise">
+            What I <em>reach</em> for.
+          </h1>
+          <p className="dek rise" style={{ ["--i" as string]: 1 }}>
+            {uses.intro}
+          </p>
+        </div>
+      </section>
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="wrap" style={{ display: "grid", gap: "var(--s5)" }}>
+          {uses.sections.map((s) => (
+            <div key={s.title} className="rail">
+              <span className="meta">{s.title}</span>
+              <dl className="facts">
+                {s.items.map(([name, note]) => (
+                  <div key={name}>
+                    <dt style={{ color: "var(--bone)", textTransform: "none", letterSpacing: 0 }}>
+                      {name}
+                    </dt>
+                    <dd style={{ color: "var(--ash)" }}>{note}</dd>
+                  </div>
                 ))}
-              </ul>
+              </dl>
             </div>
           ))}
+          <p className="meta">Last revised {uses.updated}</p>
         </div>
-
-        <p className="mt-16 text-xs text-muted/70 font-mono">
-          Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long" })}
-        </p>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
