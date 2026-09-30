@@ -21,7 +21,7 @@ npm run lint && npm run typecheck
 
 Pages are static. Content is plain TypeScript, so a typo in a field fails the build.
 
-**Email is hidden for now** (`email: null` in `content/site.ts`). Every contact point falls back to LinkedIn. Set it to the address once the mailbox exists and the whole site switches to `mailto:`.
+**Contact email** is set in `content/site.ts` (`email`). Set it to `null` to hide it; every contact point then falls back to LinkedIn.
 
 
 ## The portrait

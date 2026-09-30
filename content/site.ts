@@ -3,9 +3,9 @@
 export const site = {
   name: "Shiva Deepak",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://shivadeepak.dev",
-  // Hidden until the mailbox exists. Set it to the address to switch every
-  // contact point on the site back to email; while null they all point to LinkedIn.
-  email: null as string | null,
+  // Every contact point on the site reads this. Set it to null to hide email and
+  // fall back to LinkedIn everywhere.
+  email: "shivadeepak.dev@gmail.com" as string | null,
   github: "https://github.com/shivadeepak99",
   linkedin: "https://www.linkedin.com/in/shivadeepak-shanigaram-77b475314/",
   // "crimson" (black + reds) or "ember" (original warm look). Tokens live in app/globals.css.
