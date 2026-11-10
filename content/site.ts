@@ -7,7 +7,7 @@ export const site = {
   // fall back to LinkedIn everywhere.
   email: "shivadeepak.dev@gmail.com" as string | null,
   github: "https://github.com/shivadeepak99",
-  linkedin: "https://www.linkedin.com/in/shivadeepak-shanigaram-77b475314/",
+  linkedin: "https://www.linkedin.com/in/shanigaram-shivadeepak/",
   // "crimson" (black + reds) or "ember" (original warm look). Tokens live in app/globals.css.
   palette: "crimson" as "crimson" | "ember",
   // One sentence, used on every surface: hero, <title>, social card, GitHub bio.

@@ -26,7 +26,7 @@ export const work: CaseFile[] = [
     kicker: "Production · GPU service",
     year: "2026",
     summary:
-      "An asynchronous extraction service for a maritime software platform. Long technical documents go in; structured blocks, markdown and search-ready chunks come out. The customer's file is read once and never stored.",
+      "An asynchronous extraction service for a maritime software platform. Long technical documents go in; structured blocks, markdown and search-ready chunks come out. The customer's file stays in their own bucket; the service reads it once and deletes its temporary working copy when the job ends.",
     tags: ["TypeScript", "Python", "SQS · S3 · EC2", "PostgreSQL", "PyTorch", "Vision LLM"],
     problem: [
       "Technical manuals, drawings and scans defeat naive PDF-to-text. Tables break across pages, drawings hold text a layout model never sees, and scanned pages need OCR.",
@@ -52,7 +52,7 @@ export const work: CaseFile[] = [
         body: "A synchronous mode is the first thing every caller asks for and the first thing to break: the client times out, the GPU keeps working, and nobody collects the result. So there is no synchronous endpoint at all.",
       },
       {
-        title: "We never store the input.",
+        title: "The input is read once, then deleted.",
         body: "Callers keep the PDF in their own bucket and grant a role to read it. Each tenant carries a bucket allowlist, otherwise one tenant could name another's bucket and read it through us. The working copy lives on disposable scratch disk and is deleted in a finally block, backed by a janitor.",
       },
       {
@@ -60,8 +60,12 @@ export const work: CaseFile[] = [
         body: "Claiming a job stamps an owner token and an expiry in one conditional update. A crashed worker's job becomes claimable when the lease lapses, a live worker can't be robbed, and a stale worker's writes match nothing. Extending queue visibility is the liveness signal, so there is no heartbeat table to maintain.",
       },
       {
+        title: "A retry returns the original answer.",
+        body: "Submitting the same job again returns the response the first submission got instead of creating a second job. A client that retries after a timeout cannot create duplicate work.",
+      },
+      {
         title: "End the process to free the memory.",
-        body: "The parser leaks, and only ending the process reclaims it. Documents are cut into short slices, each in its own child process. A long document that failed every attempt as one process passed every attempt as several. Pages carry absolute numbers, so merging follows the plan, never the completion order.",
+        body: "The parser leaks, and only ending the process reclaims it. Documents are cut into short slices, each in its own child process. On the earlier prototype, a 90-page document failed 4 of 4 attempts as one process and passed 5 of 5 as five 20-page processes. Pages carry absolute numbers, so merging follows the plan, never the completion order.",
       },
       {
         title: "One contract, generated on both sides.",
@@ -84,7 +88,7 @@ export const work: CaseFile[] = [
   {
     slug: "scoped-graph-agent",
     n: "02",
-    title: "An agent that cannot leak another tenant's data",
+    title: "An agent whose tenant scope lives in code, not the prompt",
     kicker: "Production · Agent",
     year: "2026",
     summary:
@@ -250,7 +254,7 @@ export const work: CaseFile[] = [
     kicker: "Public · Data platform",
     year: "2026",
     summary:
-      "An analytics platform for LLM prompt telemetry: about 4.6 million raw execution events normalised, feature-engineered, warehoused and mined.",
+      "A team-built analytics platform for LLM prompt telemetry: millions of raw execution events normalised, feature-engineered, warehoused and mined.",
     tags: ["Python", "PostgreSQL", "FastAPI", "R", "Next.js"],
     problem: [
       "Teams tune prompts by feel. The logs that could show what actually works are unstructured and huge.",
@@ -279,6 +283,7 @@ export const work: CaseFile[] = [
     ],
     outcome: [
       "A FastAPI layer over the warehouse and a dashboard on top, so the backend data work is the product and the UI is a view of it.",
+      "My part: the FastAPI endpoints and SQL queries over the warehouse, preprocessing, and tracing for the query agent.",
     ],
     hindsight: [],
     links: [{ label: "Source on GitHub", href: "https://github.com/shivadeepak99/PromptLens" }],
