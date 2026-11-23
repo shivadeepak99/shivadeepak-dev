@@ -21,30 +21,7 @@ export default function OpengraphImage() {
           borderTop: `6px solid ${c.accent}`,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 20, fontSize: 24, letterSpacing: 4, color: c.dim }}>
-          {/* satori cannot draw SVG text, so the monogram is rebuilt from boxes here */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 72,
-              height: 72,
-              borderRadius: 16,
-              background: "#17171a",
-              border: "2px solid #3a3a40",
-              color: c.fg,
-              fontSize: 28,
-              fontWeight: 700,
-              letterSpacing: 0,
-            }}
-          >
-            SD
-            <div style={{ display: "flex", width: 22, height: 3, borderRadius: 2, background: c.accent, marginTop: 2 }} />
-          </div>
-          <span style={{ display: "flex" }}>SHIVADEEPAK.DEV</span>
-        </div>
+        <div style={{ display: "flex", fontSize: 24, letterSpacing: 4, color: c.dim }}>SHIVADEEPAK.DEV</div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div style={{ display: "flex", fontSize: 76, fontWeight: 700, letterSpacing: -2, lineHeight: 1.05 }}>

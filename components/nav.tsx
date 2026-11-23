@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { contact, site } from "@/content/site";
-import { LogoMark } from "./logo-mark";
 
 const items = [
   ["/work", "Work"],
@@ -21,8 +20,7 @@ export function Nav() {
     <header className="nav">
       <div className="wrap">
         <Link href="/" className="brand" aria-label={`${site.name}, home`}>
-          <LogoMark size={28} />
-          <span>{site.name}</span>
+          {site.name}
         </Link>
 
         <nav aria-label="Primary">
