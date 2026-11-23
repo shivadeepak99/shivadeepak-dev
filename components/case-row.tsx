@@ -18,7 +18,7 @@ export function CaseRow({ c, as: H = "h3" }: { c: CaseFile; as?: "h2" | "h3" }) 
             </span>
           ))}
           <span className="go" aria-hidden="true">
-            ↗
+            →
           </span>
         </div>
       </Link>

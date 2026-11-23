@@ -1,103 +1,106 @@
-// Site-wide facts. Long-form content lives in work.ts and notes.ts.
+// Site-wide facts. Case studies live in work.ts.
 
 export const site = {
-  name: "Shiva Deepak",
+  name: "Shanigaram Shivadeepak",
+  short: "Shivadeepak",
+  role: "AI Engineer",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://shivadeepak.dev",
-  // Every contact point on the site reads this. Set it to null to hide email and
-  // fall back to LinkedIn everywhere.
-  email: "shivadeepak.dev@gmail.com" as string | null,
+  // Every contact point on the site reads this.
+  email: "shivadeepak.dev@gmail.com",
   github: "https://github.com/shivadeepak99",
-  linkedin: "https://www.linkedin.com/in/shanigaram-shivadeepak/",
-  // "crimson" (black + reds) or "ember" (original warm look). Tokens live in app/globals.css.
-  palette: "crimson" as "crimson" | "ember",
-  // One sentence, used on every surface: hero, <title>, social card, GitHub bio.
-  line: "I build AI systems that decide what to do next.",
-  emphasis: "decide", // the word set in ember italic inside `line`
-  sub: "Agents, extraction pipelines, and the plumbing that keeps them honest.",
-  tz: "Asia/Kolkata",
-  // What the arch shows until a real portrait exists: "vigil" | "watcher" | "graph" | "sigil".
-  illustration: "vigil" as "vigil" | "watcher" | "graph" | "sigil",
-  // Drop the animated portrait in here when it exists, e.g.
-  //   portrait: { src: "/portrait.mp4", poster: "/portrait.jpg", alt: "Shiva Deepak" }
-  // Put the files in /public. While this is null, the arch shows the animated sigil.
-  portrait: null as null | { src: string; poster?: string; alt: string },
+  location: "Hyderabad, India",
+  // Used on every surface: hero, <title>, social card.
+  line: "AI engineer building reliable agents, retrieval systems and data pipelines.",
+  sub: "I design and ship production AI systems end to end: tool-using agents with access control enforced in code, document extraction services, and the evaluation work that keeps them accurate.",
 };
 
-export const now = [
+export const profile = [
+  { label: "Current role", text: "AI Engineering Intern, maritime software company" },
+  { label: "Since", text: "May 2026" },
+  { label: "Education", text: "B.Tech, Computer Science (AI & Data Science), IIIT Kottayam" },
+  { label: "Focus", text: "AI agents, retrieval, backend systems" },
+  { label: "Location", text: "Hyderabad, India (IST)" },
+];
+
+export const capabilities = [
   {
-    label: "Now",
-    text: "Owning production AI systems end to end at a maritime software company, as an engineering intern with a senior's scope.",
+    title: "AI agents and evaluation",
+    body: "Tool-calling agents built on LangGraph, with permissions enforced in code rather than in the prompt. Every agent ships with a labelled test set, and each failure is classified before anything is tuned.",
+    tools: ["LangGraph", "Gemini", "RAG", "Hybrid search", "LLM evaluation"],
   },
   {
-    label: "Studying",
-    text: "B.Tech in Computer Science (AI & Data Science) at IIIT Kottayam, 2023–2027. IIT Madras BS, foundation level completed.",
+    title: "Document and data pipelines",
+    body: "Extraction of long technical PDFs, including scanned pages, into structured data, and ETL pipelines that verify no value is lost between the source document and the database.",
+    tools: ["Python", "OCR", "Vision models", "Neo4j", "PostgreSQL"],
+  },
+  {
+    title: "Backend systems",
+    body: "Asynchronous services designed for failure: crash recovery through database leases, idempotent submission, typed contracts shared between services, and deployment on AWS.",
+    tools: ["TypeScript", "FastAPI", "Fastify", "AWS SQS / S3 / EC2", "Docker"],
   },
 ];
 
-export const elsewhere = [
+export const timeline = [
   {
-    label: "Earlier",
-    text: "PromptForge, an agentic prompt-to-system platform. Paused. What I learned there is in everything I've built since.",
+    period: "May 2026 – Present",
+    title: "AI Engineering Intern",
+    org: "Maritime software company",
+    text: "Built and operate a natural-language candidate search agent, the ETL pipeline behind it, a PDF extraction service, and a fuel-consumption forecasting model.",
   },
   {
-    label: "Quietly",
-    text: "On the side, helping very old books find new readers.",
-  },
-];
-
-export const principles = [
-  {
-    title: "Confidence is not verification.",
-    body: "A model will rate a wrong answer as certain. I check outputs against something outside the model.",
+    period: "2023 – 2027",
+    title: "B.Tech, Computer Science and Engineering (AI & Data Science)",
+    org: "Indian Institute of Information Technology, Kottayam",
+    text: "CGPA 8.35 / 10. Expected graduation March–April 2027.",
   },
   {
-    title: "Refusal is an outcome.",
-    body: "A system that can't say “I can't support that” will eventually say something false.",
-  },
-  {
-    title: "Measure it, then print the misses.",
-    body: "Ablations, held-out sets and failure audits belong in the write-up, not in a drawer.",
+    period: "Completed",
+    title: "BS in Data Science and Programming, foundation level",
+    org: "Indian Institute of Technology Madras",
+    text: "",
   },
 ];
 
 export const uses = {
-  updated: "September 2026",
-  intro: "What I actually reach for. Revised when something changes, not when something trends.",
+  updated: "November 2026",
+  intro: "Languages, infrastructure and tools used in current work.",
   sections: [
     {
-      title: "Build",
+      title: "Engineering",
       items: [
-        ["Python", "Agents, retrieval, data pipelines, GPU workers."],
-        ["TypeScript", "APIs, typed contracts, and the interfaces on top."],
-        ["PostgreSQL", "The default answer. Neo4j when the question is really about relationships."],
-        ["AWS", "SQS, S3, EC2. Boring on purpose."],
+        ["Python", "Agents, retrieval, data pipelines and GPU workers."],
+        ["TypeScript", "APIs, typed service contracts and web interfaces."],
+        ["PostgreSQL", "Primary datastore. Neo4j where the data is fundamentally a graph."],
+        ["AWS", "SQS, S3 and EC2."],
       ],
     },
     {
-      title: "Agents",
+      title: "AI",
       items: [
         ["LangGraph", "Explicit state for routing, memory and recovery."],
-        ["Gemini, Claude, Groq", "Picked per task and measured, never assumed."],
-        ["MCP", "Tool and context surface for assistant-native workflows."],
+        ["Gemini, Claude, Groq", "Selected per task on measured results."],
+        ["MCP", "Tool and context interfaces for assistant workflows."],
       ],
     },
     {
-      title: "Daily",
+      title: "Workflow",
       items: [
         ["VS Code", "Primary editor."],
-        ["Claude Code", "Review, debugging, and arguing through design decisions."],
+        ["Claude Code", "Code review, debugging and design review."],
       ],
     },
   ] as { title: string; items: [string, string][] }[],
 };
 
-// The single place every "say hello" link reads from.
-export const contact = site.email
-  ? { href: `mailto:${site.email}`, label: site.email, cta: "Say hello", pitch: "Email is the fastest way." }
-  : { href: site.linkedin, label: "Say hello on LinkedIn", cta: "Say hello", pitch: "A message on LinkedIn is the fastest way." };
+// The single place every contact link reads from.
+export const contact = { href: `mailto:${site.email}`, label: site.email, cta: "Contact" };
 
 // Same values as the CSS tokens, for the places CSS can't reach (social card, theme-color).
-export const paletteHex = {
-  crimson: { ink: "#000000", bone: "#f3ecec", ash: "#b9acac", dim: "#9e8f8f", accent: "#ff0000", glow: "rgba(188,2,2,0.45)" },
-  ember: { ink: "#0e0d0b", bone: "#ebe5d8", ash: "#a8a193", dim: "#928b7c", accent: "#ff6a3d", glow: "rgba(255,106,61,0.22)" },
-}[site.palette];
+export const theme = {
+  bg: "#0a0a0b",
+  fg: "#ededef",
+  muted: "#a1a1aa",
+  dim: "#71717a",
+  line: "#26262a",
+  accent: "#e5484d",
+};

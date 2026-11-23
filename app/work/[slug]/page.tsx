@@ -23,10 +23,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const H = ({ children }: { children: React.ReactNode }) => (
-  <p className="meta" style={{ marginBottom: "var(--s3)" }}>
-    {children}
-  </p>
+const H = ({ children }: { children: React.ReactNode }) => <p className="meta label">{children}</p>;
+
+const List = ({ items }: { items: string[] }) => (
+  <ul className="plain">
+    {items.map((p) => (
+      <li key={p}>{p}</li>
+    ))}
+  </ul>
 );
 
 export default async function CasePage({ params }: Props) {
@@ -41,7 +45,7 @@ export default async function CasePage({ params }: Props) {
       <header className="page-head">
         <div className="wrap">
           <Link className="back" href="/work">
-            ← All case files
+            ← All work
           </Link>
           <p className="meta" style={{ marginTop: "var(--s4)" }}>
             {c.n} · {c.kicker} · {c.year}
@@ -52,7 +56,7 @@ export default async function CasePage({ params }: Props) {
           <p className="dek rise" style={{ ["--i" as string]: 1 }}>
             {c.summary}
           </p>
-          <div className="case-meta">
+          <div className="tags case-meta">
             {c.tags.map((t) => (
               <span className="tag" key={t}>
                 {t}
@@ -64,44 +68,33 @@ export default async function CasePage({ params }: Props) {
 
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="wrap">
-          <H>System flow</H>
+          <H>Architecture</H>
           <Flow steps={c.flow} />
         </div>
       </section>
 
-      <div className="wrap">
-        <hr className="rule" />
-      </div>
-
       <section className="section">
         <div className="wrap split">
           <div>
-            <H>The problem</H>
-            <ul className="plain">
-              {c.problem.map((p) => (
-                <li key={p}>{p}</li>
-              ))}
-            </ul>
+            <H>Problem</H>
+            <List items={c.problem} />
           </div>
           <div>
             <H>Constraints</H>
-            <ul className="plain">
-              {c.constraints.map((p) => (
-                <li key={p}>{p}</li>
-              ))}
-            </ul>
+            <List items={c.constraints} />
           </div>
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }} aria-labelledby="dec-h">
+      <section className="section" aria-labelledby="dec-h">
         <div className="wrap">
-          <h2 id="dec-h" className="display" style={{ margin: "0 0 var(--s4)", fontSize: "var(--t-h2)" }}>
-            Decisions.
+          <H>Design decisions</H>
+          <h2 id="dec-h" className="sr">
+            Design decisions
           </h2>
           <ol className="decisions">
             {c.decisions.map((d) => (
-              <li key={d.title} className="reveal">
+              <li key={d.title}>
                 <h3>{d.title}</h3>
                 <p>{d.body}</p>
               </li>
@@ -110,24 +103,16 @@ export default async function CasePage({ params }: Props) {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="wrap split">
           <div>
-            <H>What it gave me</H>
-            <ul className="plain">
-              {c.outcome.map((p) => (
-                <li key={p}>{p}</li>
-              ))}
-            </ul>
+            <H>Outcome</H>
+            <List items={c.outcome} />
           </div>
           {c.hindsight.length > 0 && (
             <div>
-              <H>In hindsight</H>
-              <ul className="plain">
-                {c.hindsight.map((p) => (
-                  <li key={p}>{p}</li>
-                ))}
-              </ul>
+              <H>Next steps</H>
+              <List items={c.hindsight} />
             </div>
           )}
         </div>
@@ -144,8 +129,8 @@ export default async function CasePage({ params }: Props) {
 
       <Link href={`/work/${next.slug}`} className="next-case">
         <span className="wrap" style={{ display: "block" }}>
-          <span className="meta">Next case file · {next.n}</span>
-          <h3 className="display">{next.title}</h3>
+          <span className="meta">Next case study · {next.n}</span>
+          <h3 className="display">{next.title} →</h3>
         </span>
       </Link>
     </article>

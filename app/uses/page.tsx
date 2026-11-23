@@ -3,8 +3,8 @@ import Link from "next/link";
 import { uses } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Uses",
-  description: "The tools I actually reach for.",
+  title: "Stack",
+  description: "Languages, infrastructure and tools used in current work.",
   alternates: { canonical: "/uses" },
 };
 
@@ -16,9 +16,7 @@ export default function UsesPage() {
           <Link className="back" href="/">
             ← Home
           </Link>
-          <h1 className="display rise">
-            What I <em>reach</em> for.
-          </h1>
+          <h1 className="display rise">Technical stack</h1>
           <p className="dek rise" style={{ ["--i" as string]: 1 }}>
             {uses.intro}
           </p>
@@ -32,10 +30,8 @@ export default function UsesPage() {
               <dl className="facts">
                 {s.items.map(([name, note]) => (
                   <div key={name}>
-                    <dt style={{ color: "var(--bone)", textTransform: "none", letterSpacing: 0 }}>
-                      {name}
-                    </dt>
-                    <dd style={{ color: "var(--ash)" }}>{note}</dd>
+                    <dt>{name}</dt>
+                    <dd>{note}</dd>
                   </div>
                 ))}
               </dl>

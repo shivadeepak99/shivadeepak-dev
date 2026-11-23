@@ -1,25 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = { title: "Refused", robots: { index: false } };
+export const metadata: Metadata = { title: "Page not found", robots: { index: false } };
 
 export default function NotFound() {
   return (
-    <section className="refused">
+    <section className="page-head notfound">
       <div className="wrap">
-        <p className="meta">404 · outcome: refuse</p>
-        <h1 className="display rise" style={{ marginTop: "var(--s3)" }}>
-          <em>Refused.</em>
-        </h1>
-        <p className="dek rise" style={{ ["--i" as string]: 1, marginTop: "var(--s4)", maxWidth: "40ch", color: "var(--ash)" }}>
-          That path isn&rsquo;t one of the outcomes. Refusing is a first-class result here, so this
-          isn&rsquo;t an error. It&rsquo;s the system working.
-        </p>
-        <p className="hero-cta rise" style={{ ["--i" as string]: 2 }}>
+        <p className="meta">Error 404</p>
+        <h1 className="display">Page not found</h1>
+        <p className="dek">The requested page does not exist or has been moved.</p>
+        <div className="hero-cta">
           <Link className="btn" href="/">
-            Take the next step: home
+            Return to home
           </Link>
-        </p>
+        </div>
       </div>
     </section>
   );

@@ -1,15 +1,17 @@
 import Link from "next/link";
-import { site, contact, principles, now, elsewhere } from "@/content/site";
+import { site, contact, profile, capabilities, timeline } from "@/content/site";
 import { work } from "@/content/work";
-import { Headline } from "@/components/headline";
-import { Portrait } from "@/components/portrait";
-import { Trace } from "@/components/trace";
 import { CaseRow } from "@/components/case-row";
 
-const Rule = () => (
-  <div className="wrap">
-    <hr className="rule" />
-  </div>
+const Head = ({ id, n, label, title }: { id: string; n: string; label: string; title: string }) => (
+  <header className="sec-head">
+    <span className="meta">
+      {n} — {label}
+    </span>
+    <h2 id={id} className="display">
+      {title}
+    </h2>
+  </header>
 );
 
 export default function Home() {
@@ -17,107 +19,102 @@ export default function Home() {
     <>
       <section className="hero">
         <div className="wrap hero-grid">
-          <Headline />
-
-          <div className="hero-left">
-            <p className="lede rise" style={{ ["--i" as string]: 1 }}>
+          <div className="hero-main">
+            <p className="meta rise">
+              {site.role} · {site.location}
+            </p>
+            <h1 className="display rise" style={{ ["--i" as string]: 1 }}>
+              {site.line}
+            </h1>
+            <p className="lede rise" style={{ ["--i" as string]: 2 }}>
               {site.sub}
             </p>
-            <div className="hero-cta rise" style={{ ["--i" as string]: 2 }}>
+            <div className="hero-cta rise" style={{ ["--i" as string]: 3 }}>
               <Link className="btn" href="/work">
-                Read the case files
+                View selected work
               </Link>
               <a className="btn ghost" href={contact.href}>
-                {site.email ?? "LinkedIn ↗"}
+                Get in touch
               </a>
             </div>
           </div>
 
-          <Trace />
-          <Portrait />
-        </div>
-      </section>
-
-      <Rule />
-
-      <section className="section" aria-labelledby="work-h">
-        <div className="wrap rail">
-          <span className="meta">01 · Selected work</span>
-          <div>
-            <h2 id="work-h" className="display">
-              Case files.
-            </h2>
-            <ul className="rows reveal">
-              {work.slice(0, 3).map((c) => (
-                <CaseRow key={c.slug} c={c} />
-              ))}
-            </ul>
-            <Link className="more" href="/work" style={{ marginTop: "var(--s3)" }}>
-              All case files →
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <Rule />
-
-      <section className="section" aria-labelledby="how-h">
-        <div className="wrap rail">
-          <span className="meta">02 · How I work</span>
-          <div>
-            <h2 id="how-h" className="display">
-              Three things I won&rsquo;t compromise on.
-            </h2>
-            <ul className="principles reveal">
-              {principles.map((p) => (
-                <li key={p.title}>
-                  <h3>{p.title}</h3>
-                  <p>{p.body}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <Rule />
-
-      <section className="section" aria-labelledby="now-h">
-        <div className="wrap rail">
-          <span className="meta">03 · Status</span>
-          <div>
-            <h2 id="now-h" className="display">
-              Where things stand.
-            </h2>
-            <dl className="facts reveal">
-              {[...now, ...elsewhere].map((f) => (
+          <aside className="profile rise" style={{ ["--i" as string]: 3 }} aria-label="Profile">
+            <p className="meta">Profile</p>
+            <dl>
+              {profile.map((f) => (
                 <div key={f.label}>
                   <dt>{f.label}</dt>
                   <dd>{f.text}</dd>
                 </div>
               ))}
             </dl>
-          </div>
+          </aside>
         </div>
       </section>
 
-      <Rule />
-
-      <section className="contact" aria-labelledby="hi-h">
+      <section className="section" aria-labelledby="work-h">
         <div className="wrap">
-          <span className="meta" id="hi-h">
-            04 · Contact
-          </span>
-          <p style={{ margin: "var(--s3) 0 var(--s4)", color: "var(--ash)", maxWidth: "44ch" }}>
-            Serious technical problems, agents that need to be reliable, or something strange and
-            interesting. {contact.pitch}
-          </p>
+          <Head id="work-h" n="01" label="Selected work" title="Systems in production and public builds" />
+          <ul className="rows">
+            {work.map((c) => (
+              <CaseRow key={c.slug} c={c} />
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="cap-h">
+        <div className="wrap">
+          <Head id="cap-h" n="02" label="Capabilities" title="Areas of expertise" />
+          <ul className="caps">
+            {capabilities.map((c) => (
+              <li key={c.title}>
+                <h3>{c.title}</h3>
+                <p>{c.body}</p>
+                <div className="tags">
+                  {c.tools.map((t) => (
+                    <span className="tag" key={t}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="exp-h">
+        <div className="wrap">
+          <Head id="exp-h" n="03" label="Background" title="Experience and education" />
+          <ol className="timeline">
+            {timeline.map((t) => (
+              <li key={t.title}>
+                <span className="meta">{t.period}</span>
+                <div>
+                  <h3>{t.title}</h3>
+                  <p className="org">{t.org}</p>
+                  {t.text && <p>{t.text}</p>}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="contact" aria-labelledby="contact-h">
+        <div className="wrap">
+          <span className="meta">04 — Contact</span>
+          <h2 id="contact-h" className="display">
+            Open to internship and full-time roles in AI and backend engineering.
+          </h2>
+          <p className="contact-note">Email is the most reliable way to reach me.</p>
           <a className="mail" href={contact.href}>
             {contact.label}
           </a>
           <div className="out">
             <a href={site.github}>GitHub</a>
-            <a href={site.linkedin}>LinkedIn</a>
           </div>
         </div>
       </section>

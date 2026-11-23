@@ -8,8 +8,7 @@ import { LogoMark } from "./logo-mark";
 
 const items = [
   ["/work", "Work"],
-  ["/notes", "Notes"],
-  ["/uses", "Uses"],
+  ["/uses", "Stack"],
 ] as const;
 
 export function Nav() {
@@ -22,10 +21,8 @@ export function Nav() {
     <header className="nav">
       <div className="wrap">
         <Link href="/" className="brand" aria-label={`${site.name}, home`}>
-          <LogoMark size={34} />
-          <span>
-            Shiva <i>Deepak</i>
-          </span>
+          <LogoMark size={28} />
+          <span>{site.name}</span>
         </Link>
 
         <nav aria-label="Primary">
@@ -38,7 +35,7 @@ export function Nav() {
               </li>
             ))}
             <li>
-              <a className="btn" href={contact.href}>
+              <a className="btn small" href={contact.href}>
                 {contact.cta}
               </a>
             </li>

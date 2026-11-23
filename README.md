@@ -13,33 +13,20 @@ npm run lint && npm run typecheck
 
 | To change | Edit |
 |---|---|
-| Name, email, links, the identity line, the portrait | `content/site.ts` |
-| Case files (`/work`) | `content/work.ts` |
-| Notes (`/notes`) | `content/notes.ts` |
-| The hero's decision-trace scenarios | `content/trace.ts` |
-| Colors, type scale, spacing, motion | `:root` in `app/globals.css` |
+| Name, role, links, profile, capabilities, experience | `content/site.ts` |
+| Case studies (`/work`) | `content/work.ts` |
+| Colors, type scale, spacing | `:root` in `app/globals.css` (mirror color changes in `theme` in `content/site.ts`) |
 
 Pages are static. Content is plain TypeScript, so a typo in a field fails the build.
 
-**Contact email** is set in `content/site.ts` (`email`). Set it to `null` to hide it; every contact point then falls back to LinkedIn.
-
-
-## The portrait
-
-Drop the animated portrait into `/public` and set it in `content/site.ts`:
-
-```ts
-portrait: { src: "/portrait.mp4", poster: "/portrait.jpg", alt: "Shiva Deepak" },
-```
-
-Until then the arch shows the turning sigil. Keep the video under ~1.5 MB, muted, looping, and 3:4.3.
+**Contact email** is set in `content/site.ts` (`email`); every contact point reads it.
 
 ## Design rules
 
-- **Ember** marks a decision (a refusal, a question). **Verdigris** marks something verified. Nothing else uses color.
-- Motion is CSS only, and everything is visible without JavaScript. `prefers-reduced-motion` turns it all off.
-- One motion signature: the hero trace. Everything else is still.
-- Production case files are anonymized: no company or customer names, no internal metrics. Add numbers only after the employer approves.
+- Formal tone. No slogans, no quotations, no jokes.
+- Graphite surfaces and one accent (`--accent`), used only for small markers.
+- Motion is a single entrance fade. Nothing loops. `prefers-reduced-motion` turns it off.
+- Production case studies are anonymized: no company or customer names, no internal metrics. Add numbers only after the employer approves.
 
 ## Deploy
 
